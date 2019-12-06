@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import App  from "./components/App/App";
+
 import './index.scss';
 
-import { Hello } from "./components/Hello";
-
 ReactDOM.render(
-  <Hello compiler="TypeScript" framework="React" />,
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
   document.getElementById("root")
 );

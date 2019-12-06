@@ -1,3 +1,9 @@
-h1{
-  color: aqua;
+@import './components/Header/header.scss';
+@import './components/App/app.scss';
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #F6F7F9;
+  color: #151328;
+  font-family: Neuron;
 }

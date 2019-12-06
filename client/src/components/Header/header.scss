@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  height: 64px;
+  box-shadow: 0 24px 20px -20px rgba(0, 0, 0, 0.1);
+  &__title {
+    margin: 0;
+    letter-spacing: 1px;
+  }
+}

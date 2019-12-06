@@ -7,7 +7,7 @@
   "author": "VernerBorn <vernerborn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start-client": "webpack-dev-server --mode development --open --hot",
+    "start-client": "webpack-dev-server --config client/webpack.config.js --mode development --open --hot",
     "build-client": "webpack --config client/webpack.config.js --env.mode=production"
   },
   "devDependencies": {
