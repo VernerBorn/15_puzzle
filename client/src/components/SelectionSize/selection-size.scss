@@ -1,0 +1,36 @@
+.selection-size {
+  &__title {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
+  }
+  &__button--wrap {
+    display: flex;
+    :first-child{
+      margin-left: 0;
+    }
+  }
+  &__button--active {
+    background-color: #fff;
+    font-size: 20px;
+    color: #F93C65;
+    font-family: Neuron;
+    margin: 8px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    outline-color: #F93C65;
+  }
+  &__button {
+    background-color: #F6F7F9;
+    font-size: 20px;
+    color: #151328;
+    font-family: Neuron;
+    margin: 8px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    outline-color: #F93C65;
+  }
+}
