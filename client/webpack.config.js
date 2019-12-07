@@ -32,7 +32,7 @@ module.exports = (env = {}) => {
     entry: path.join(__dirname, 'src/index.tsx'),
 
     output: {
-      path: path.join(__dirname, '/dist'),
+      path: path.join(__dirname, 'dist'),
       filename: isProd ? 'main-[hash:8].js' : 'main.js'
     },
 
@@ -57,6 +57,11 @@ module.exports = (env = {}) => {
           test: /\.(css)$/,
           use: getStyleLoaders()
         },
+        {
+          test: /\.(ttf|eot|woff|woff2)$/,
+          loader: 'file-loader',
+          include: [/fonts/],
+        }
       ]
     },
 
