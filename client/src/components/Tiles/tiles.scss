@@ -1,6 +1,5 @@
 .tiles {
   box-sizing: border-box;
-  width: 30%;
   background-color: #fff;
   margin: auto;
   margin-top: 8px;
@@ -10,10 +9,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 64px;
   &::before {
     content: "";
     padding-top: 100%;
+  }
+  &--9 {
+    width: 30%;
+    font-size: 64px;
+  }
+  &--16 {
+    width: 22%;
+    font-size: 48px;
+  }
+  &--25 {
+    width: 17%;
+    font-size: 36px;
   }
   &--none {
     background-color: #f6f7f9;

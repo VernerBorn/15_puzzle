@@ -1,14 +1,17 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite';
+import { AppContext } from '../../AppContext';
 
-interface PropsTiles {
+interface TilesProps {
   number: number,
   index: number
 }
-
-const Tiles: React.FC<PropsTiles> = ({ number, index }): JSX.Element => (
-  number === 0 ?
-    <div className='tiles tiles--none'></div>
-    : <div className='tiles'>{number}</div>
-)
-
+const Tiles = observer(function ({ number, index }: TilesProps) {
+  const { store } = React.useContext(AppContext);
+  return (
+    number === 0 ?
+      <div key={index} className={`tiles tiles--${store.sizeBoard} tiles--none`}></div>
+      : <div key={index} className={`tiles tiles--${store.sizeBoard}`}>{number}</div>
+  )
+})
 export default Tiles
