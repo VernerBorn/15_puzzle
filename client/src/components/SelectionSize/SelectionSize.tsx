@@ -1,13 +1,13 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../App/AppContext';
 
 const SelectionSize = observer(function () {
   const { store } = React.useContext(AppContext);
   const handleChangeForm = (e: React.FormEvent<HTMLFormElement>) => {
     const value = Number((e.target as HTMLInputElement).value)
+    document.title = `${value} puzzle`
     store.getSizeBoard(value)
-    store.getArrayTiles()
   }
   return (
     <div className='selection-size'>
