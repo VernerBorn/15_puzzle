@@ -1,4 +1,4 @@
-const checkArrayToWin = (array: number[]) => {
+const сheckField = (array: number[]) => {
   const gridWidth = Math.trunc(Math.sqrt(array.length));
   let parity = 0, row = 0, blankRow = 0;
   for (let i = 0; i < array.length; i++) {
@@ -26,4 +26,4 @@ const checkArrayToWin = (array: number[]) => {
     return parity % 2 == 0;
   }
 }
-export default checkArrayToWin
+export default сheckField
