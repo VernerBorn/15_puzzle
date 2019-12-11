@@ -9,6 +9,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
+  border: none;
+  font-family: Neuron;
   &::before {
     content: "";
     padding-top: 100%;

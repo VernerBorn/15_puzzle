@@ -11,6 +11,16 @@ const Board = observer(function () {
   }, [store.getSizeBoard]);
   const renderTiles: JSX.Element[] = store
     .currentArray.map((number: number, i: number) => <Tiles number={number} index={i} />)
-  return <div className='board' >{renderTiles}</div>
+  return (
+    <form className='board'
+      onClick={() => store.moveRight()}
+      onContextMenu={(e) => {
+        e.preventDefault()
+        store.moveLeft()
+      }
+      } >
+      {renderTiles}
+    </form >
+  )
 })
 export default Board

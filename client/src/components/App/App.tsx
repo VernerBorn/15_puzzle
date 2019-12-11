@@ -8,7 +8,7 @@ import Board from "../Board/Board";
 const App = () => (
   <AppContext.Provider value={stores}>
     <Header />
-    <main className='main'>
+    <main className='main' >
       <section className='wrapped--info-panel'>
         <SelectionSize />
       </section>

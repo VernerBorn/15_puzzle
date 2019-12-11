@@ -10,8 +10,10 @@ const Tiles = observer(function ({ number, index }: TilesProps) {
   const { store } = React.useContext(AppContext);
   return (
     number === 0 ?
-      <div key={index} className={`tiles tiles--${store.sizeBoard} tiles--none`}></div>
-      : <div key={index} className={`tiles tiles--${store.sizeBoard}`}>{number}</div>
+      <div key={index} className={`tiles tiles--${store.sizeBoard} tiles--none`}
+        onClick={(e) => e.preventDefault()}></ div>
+      : <div key={index} className={`tiles tiles--${store.sizeBoard}`}
+        onClick={(e) => e.preventDefault()}>{number}</div>
   )
 })
 export default Tiles
