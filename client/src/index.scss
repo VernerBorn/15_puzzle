@@ -1,7 +1,7 @@
 @import "./components/Header/header.scss";
 @import "./components/App/app.scss";
 @import "./components/SelectionSize/selection-size.scss";
-@import "./components/Board/board.scss";
+@import "./components/Field/field.scss";
 @import "./components/Tiles/tiles.scss";
 
 @font-face {
@@ -13,8 +13,7 @@
 }
 @font-face {
   font-family: Neuron;
-  src: url("../public/fonts/Neuron.woff2") format("woff2"),
-    url("../public/fonts/Neuron.woff") format("woff");
+  src: url("../public/fonts/Neuron.woff2") format("woff2"), url("../public/fonts/Neuron.woff") format("woff");
   font-style: normal;
   font-weight: bold;
 }

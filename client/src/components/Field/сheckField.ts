@@ -1,6 +1,8 @@
 const сheckField = (array: number[]) => {
   const gridWidth = Math.sqrt(array.length);
-  let parity = 0, row = 0, blankRow = 0;
+  let parity = 0,
+    row = 0,
+    blankRow = 0;
   for (let i = 0; i < array.length; i++) {
     if (i % gridWidth == 0) {
       row++;
@@ -24,5 +26,5 @@ const сheckField = (array: number[]) => {
   } else {
     return parity % 2 == 0;
   }
-}
-export default сheckField
+};
+export default сheckField;
