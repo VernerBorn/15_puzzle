@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
 import { AppContext } from '../App/AppContext';
-
-import useMovement from './useMovement';
-
-import Tiles from '../Tiles/Tiles';
 
 interface keyCodeMap {
   [key: number]: string;
@@ -13,7 +8,7 @@ interface actionMove {
   [key: string]: void;
 }
 
-const Board = observer(function() {
+const useMovement = () => {
   const { store } = React.useContext(AppContext);
   const { moveLeft, moveUP, moveRight, moveDown } = store;
 
@@ -30,34 +25,60 @@ const Board = observer(function() {
     83: 'Down'
   };
 
-  // const actionMove: actionMove = {
-  //   left: moveLeft(),
-  //   up: moveUP(),
-  //   right: moveRight(),
-  //   down: moveDown()
-  // };
+  const actionMove: actionMove = {
+    left: moveLeft(),
+    up: moveUP(),
+    right: moveRight(),
+    down: moveDown()
+  };
+
+  const handleKey = (event: KeyboardEvent) => {
+    const modifiers = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+    const mapped = keyCodeMap[event.which];
+    if (!modifiers) {
+      if (mapped !== undefined) {
+        event.preventDefault();
+        console.log(mapped);
+        actionMove[mapped];
+      }
+    }
+  };
+
+  const listenKey = () => {
+    window.document.addEventListener('keydown', handleKey);
+  };
 
   let touchStartClientX: number, touchStartClientY: number;
 
   const eventTouchStartListner = (e: TouchEvent) => {
-    if (e.touches.length == e.targetTouches.length ? false : true) {
+    if (e.touches.length == e.targetTouches.length ? true : false) {
     } else {
-      touchStartClientX = e.changedTouches[0].pageX;
-      touchStartClientY = e.changedTouches[0].pageY;
+      touchStartClientX = e.touches[0].clientX;
+      touchStartClientY = e.touches[0].clientY;
     }
   };
   const eventTouchendListner = (e: TouchEvent) => {
-    if (e.touches.length == e.targetTouches.length ? false : true) {
+    let touchEndClientX, touchEndClientY;
+    if (e.touches.length == e.targetTouches.length ? true : false) {
     } else {
-      const touchEndClientX = e.changedTouches[0].pageX;
-      const touchEndClientY = e.changedTouches[0].pageY;
+      touchEndClientX = e.touches[0].clientX;
+      touchEndClientY = e.touches[0].clientY;
+    }
+    if (touchEndClientX && touchEndClientY) {
       const dx = touchEndClientX - touchStartClientX;
       const absDx = Math.abs(dx);
+
       const dy = touchEndClientY - touchStartClientY;
       const absDy = Math.abs(dy);
-      if (Math.max(absDx, absDy) > 40) {
-        console.log(absDx, absDy);
-        absDx > absDy ? (dx < 0 ? moveLeft() : moveRight()) : dy < 0 ? moveUP() : moveDown();
+
+      if (Math.max(absDx, absDy) > 10) {
+        absDx > absDy
+          ? dx < 0
+            ? actionMove.left
+            : actionMove.right
+          : dy < 0
+          ? actionMove.up
+          : actionMove.down;
       }
     }
   };
@@ -71,15 +92,9 @@ const Board = observer(function() {
     window.document.removeEventListener('touchend', eventTouchendListner);
   };
   useEffect(() => {
+    listenKey();
     listenSwipe();
-    store.getArrayTiles();
     return () => removeEventListeners();
-  }, [store.getSizeBoard]);
-
-  const renderTiles: JSX.Element[] = store.currentArray.map((number: number, i: number) => (
-    <Tiles number={number} index={i} />
-  ));
-
-  return <div className="field">{renderTiles}</div>;
-});
-export default Board;
+  });
+};
+export default useMovement;

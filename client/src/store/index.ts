@@ -45,7 +45,6 @@ export class store {
   @action moveRight = () => {
     const sqrtSizeBoard = Math.sqrt(this.sizeBoard);
     const indexMoveTiles = this.zeroElement - 1;
-    console.log(indexMoveTiles % sqrtSizeBoard);
     if (
       indexMoveTiles % sqrtSizeBoard != sqrtSizeBoard - 1 &&
       indexMoveTiles % sqrtSizeBoard >= 0
