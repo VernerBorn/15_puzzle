@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx';
 
-import genField from '../components/Field/genField';
+import genField from './genField';
 
 export class store {
   moveZeroElement = (indexMoveTiles: number) => {
