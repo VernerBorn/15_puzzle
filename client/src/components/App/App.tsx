@@ -3,7 +3,7 @@ import { AppContext, stores } from './AppContext';
 
 import Header from '../Header/Header';
 import SelectionSize from '../SelectionSize/SelectionSize';
-import Board from '../Field/Field';
+import Field from '../Field/Field';
 
 const App = () => (
   <AppContext.Provider value={stores}>
@@ -12,7 +12,7 @@ const App = () => (
       <section className="wrapped--info-panel">
         <SelectionSize />
       </section>
-      <Board />
+      <Field />
     </main>
   </AppContext.Provider>
 );
