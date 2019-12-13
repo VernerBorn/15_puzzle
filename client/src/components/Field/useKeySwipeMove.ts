@@ -22,6 +22,20 @@ export default function useKeySwipeMove(actionMove: actionMove) {
     83: 'down'
   };
 
+  const handleKey = (e: KeyboardEvent) => {
+    const modifiers = e.altKey || e.ctrlKey || e.metaKey || e.shiftKey;
+    const mapped = keyCodeMap[e.which];
+    if (!modifiers) {
+      if (mapped !== undefined) {
+        actionMove[mapped]();
+      }
+    }
+  };
+
+  const listenKey = () => {
+    window.document.addEventListener('keydown', handleKey);
+  };
+
   let touchStartClientX: number, touchStartClientY: number;
 
   const eventTouchStartListner = (e: TouchEvent) => {
@@ -42,7 +56,6 @@ export default function useKeySwipeMove(actionMove: actionMove) {
       const dy = touchEndClientY - touchStartClientY;
       const absDy = Math.abs(dy);
       if (Math.max(absDx, absDy) > 40) {
-        console.log(absDx, absDy);
         absDx > absDy
           ? dx < 0
             ? actionMove.left()
@@ -52,22 +65,6 @@ export default function useKeySwipeMove(actionMove: actionMove) {
           : actionMove.down();
       }
     }
-  };
-
-  const handleKey = (e: KeyboardEvent) => {
-    const modifiers = e.altKey || e.ctrlKey || e.metaKey || e.shiftKey;
-    const mapped = keyCodeMap[e.which];
-    if (!modifiers) {
-      if (mapped !== undefined) {
-        e.preventDefault();
-        console.log(mapped);
-        actionMove[mapped]();
-      }
-    }
-  };
-
-  const listenKey = () => {
-    window.document.addEventListener('keydown', handleKey);
   };
 
   const listenSwipe = () => {
