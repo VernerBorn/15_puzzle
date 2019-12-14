@@ -27,4 +27,8 @@ body {
   background-color: #f6f7f9;
   color: #151328;
   font-family: Neuron;
+  &.dark {
+    background-color: #202329;
+    color: #f4f4f4;
+  }
 }

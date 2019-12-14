@@ -1,84 +1,106 @@
 import { observable, action, computed } from 'mobx';
 
 import genField from './genField';
+import fillField from './fillField';
 
 export class store {
+  @observable sizeField = 16;
+  @observable currentArray: number[] = [];
+  @observable indexZeroElement = 0;
+  @observable totalStep = 0;
+  @observable secPassed = 0;
+  @observable isPause = true;
+  @observable isFinishGame = false;
+
   moveZeroElement = (indexMoveTiles: number) => {
-    this.currentArray[this.zeroElement] = this.currentArray[indexMoveTiles];
+    this.currentArray[this.indexZeroElement] = this.currentArray[indexMoveTiles];
     this.currentArray[indexMoveTiles] = 0;
-    this.zeroElement = indexMoveTiles;
-    this.stepAll++;
-    this.pause = false;
+    this.indexZeroElement = indexMoveTiles;
+    this.totalStep++;
+    this.isFinishGame = this.currentArray.toString() == this.winArray.toString() ? true : false;
+    this.isPause = this.isFinishGame;
   };
 
-  @observable sizeBoard = 16;
-  @observable currentArray: number[] = [];
-  @observable zeroElement = 0;
-  @observable stepAll = 0;
-  @observable seconds = 0;
-  @observable pause = true;
-
-  @computed get sqrtSizeBoard() {
-    return Math.sqrt(this.sizeBoard);
+  @computed get numberСolumns() {
+    return Math.sqrt(this.sizeField);
   }
-  @computed get timer() {
-    return new Date(this.seconds * 1000)
+
+  @computed get winArray() {
+    let arr = fillField(this.sizeField, 1);
+    arr[arr.length - 1] = 0;
+    return arr;
+  }
+
+  @computed get secTransform() {
+    return new Date(this.secPassed * 1000)
       .toUTCString()
       .split(/ /)[4]
       .slice(3);
   }
 
+  @computed get positionСheck() {
+    let check: { [key: number]: boolean } = {};
+    this.currentArray.reduce((prev, value, i) => {
+      if (prev) {
+        const valueCheck = value === i + 1;
+        check[value] = valueCheck;
+        return valueCheck;
+      } else {
+        check[value] = false;
+        return false;
+      }
+    }, true);
+    return check;
+  }
+
   @action stopTimer = () => {
-    console.log('1');
-    this.pause = true;
+    this.isPause = true;
   };
 
-  @action setTimer = () => {
-    this.seconds++;
+  @action addSecond = () => {
+    this.secPassed++;
   };
 
   @action getSizeBoard = (number: number) => {
-    this.sizeBoard = number + 1;
-    this.currentArray = genField(number + 1);
-    this.zeroElement = this.currentArray.indexOf(0);
-    this.stepAll = 0;
-    this.seconds = 0;
-    this.pause = true;
+    this.sizeField = number + 1;
+    this.getArrayTiles();
   };
 
   @action getArrayTiles = () => {
-    this.currentArray = genField(this.sizeBoard);
-    this.zeroElement = this.currentArray.indexOf(0);
+    this.currentArray = genField(this.sizeField);
+    this.indexZeroElement = this.currentArray.indexOf(0);
+    this.totalStep = 0;
+    this.secPassed = 0;
+    this.isFinishGame = false;
+    this.isPause = true;
   };
 
   @action moveUP = () => {
-    const row = this.sqrtSizeBoard;
-    const indexMoveTiles = this.zeroElement + row;
+    const indexMoveTiles = this.indexZeroElement + this.numberСolumns;
     if (indexMoveTiles < this.currentArray.length) {
       this.moveZeroElement(indexMoveTiles);
     }
   };
 
   @action moveDown = () => {
-    const row = this.sqrtSizeBoard;
-    const indexMoveTiles = this.zeroElement - row;
+    const indexMoveTiles = this.indexZeroElement - this.numberСolumns;
     if (indexMoveTiles >= 0) {
       this.moveZeroElement(indexMoveTiles);
     }
   };
 
   @action moveLeft = () => {
-    const row = this.sqrtSizeBoard;
-    const indexMoveTiles = this.zeroElement + 1;
-    if (indexMoveTiles % row > 0) {
+    const indexMoveTiles = this.indexZeroElement + 1;
+    const remainder = indexMoveTiles % this.numberСolumns;
+    if (remainder > 0) {
       this.moveZeroElement(indexMoveTiles);
     }
   };
 
   @action moveRight = () => {
-    const row = this.sqrtSizeBoard;
-    const indexMoveTiles = this.zeroElement - 1;
-    if (indexMoveTiles % row != row - 1 && indexMoveTiles % row >= 0) {
+    const indexMoveTiles = this.indexZeroElement - 1;
+    const remainder = indexMoveTiles % this.numberСolumns;
+    if (remainder != this.numberСolumns - 1 && remainder >= 0) {
       this.moveZeroElement(indexMoveTiles);
     }
   };

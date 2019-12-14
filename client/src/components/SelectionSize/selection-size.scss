@@ -43,3 +43,20 @@
     }
   }
 }
+
+.dark {
+  & .selection-size {
+    &__input {
+      & + label {
+        background-color: #2b3138;
+        box-shadow: 2px 4px 5px -4px rgba(0, 0, 0, 0.2);
+      }
+      &:checked + label {
+        color: #f93c65;
+      }
+      &:focus + label {
+        border: solid 1px #f93c65;
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@ const SelectionSize = observer(function() {
         name="selection-size"
         value={size}
         className="selection-size__input"
-        defaultChecked={size === '15' ? true : false}
+        defaultChecked={size === String(store.sizeField - 1) ? true : false}
       ></input>
       <label htmlFor={size}>{size}</label>
     </>

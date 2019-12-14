@@ -1,14 +1,24 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
+
 import { AppContext } from '../App/AppContext';
 
 interface TilesProps {
   number: number;
   index: number;
+  check: boolean;
 }
-const Tiles = observer(function({ number, index }: TilesProps) {
+const Tiles = observer(function({ number, index, check }: TilesProps) {
   const { store } = React.useContext(AppContext);
-  const { sizeBoard, currentArray, zeroElement, moveLeft, moveUP, moveRight, moveDown } = store;
+  const {
+    sizeField: sizeBoard,
+    currentArray,
+    indexZeroElement: zeroElement,
+    moveLeft,
+    moveUP,
+    moveRight,
+    moveDown
+  } = store;
   const moveClick = (e: React.SyntheticEvent) => {
     const valueTiles = Number((e.target as HTMLElement).textContent);
     const indexTiles = currentArray.indexOf(valueTiles);
@@ -29,7 +39,7 @@ const Tiles = observer(function({ number, index }: TilesProps) {
   return number === 0 ? (
     <div key={index} className={`tiles tiles--${sizeBoard} tiles--none`}></div>
   ) : (
-    <div key={index} className={`tiles tiles--${sizeBoard}`} onClick={e => moveClick(e)}>
+    <div key={index} className={`tiles ${check} tiles--${sizeBoard}`} onClick={e => moveClick(e)}>
       {number}
     </div>
   );

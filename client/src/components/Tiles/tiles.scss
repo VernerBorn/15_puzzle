@@ -30,4 +30,15 @@
     background-color: #f6f7f9;
     box-shadow: none;
   }
+  &.true {
+    color: #f93c65;
+  }
+}
+.dark {
+  & .tiles {
+    background-color: #2b3138;
+    &--none {
+      background-color: #202329;
+    }
+  }
 }

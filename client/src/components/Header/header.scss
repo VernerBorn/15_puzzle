@@ -6,8 +6,34 @@
   background-color: #fff;
   height: 64px;
   box-shadow: 0 24px 20px -20px rgba(0, 0, 0, 0.1);
+  &__inner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 500px;
+  }
   &__title {
     margin: 0;
     letter-spacing: 1px;
+  }
+  &__icon-theme {
+    width: 24px;
+    height: 24px;
+    fill: rgba(21, 19, 40, 0.7);
+    &--wrap {
+      padding-top: 4px;
+      position: absolute;
+      right: 16px;
+    }
+  }
+}
+.dark {
+  & .header {
+    background-color: #2b3138;
+    &__icon-theme {
+      fill: #f4f4f4;
+    }
   }
 }
