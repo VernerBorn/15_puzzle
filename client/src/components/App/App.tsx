@@ -4,14 +4,13 @@ import { AppContext, stores } from './AppContext';
 import Header from '../Header/Header';
 import SelectionSize from '../SelectionSize/SelectionSize';
 import Field from '../Field/Field';
+import Dashboard from '../Dashboard/Dashboard';
 
 const App = () => (
   <AppContext.Provider value={stores}>
     <Header />
     <main className="main">
-      <section className="wrapped--info-panel">
-        <SelectionSize />
-      </section>
+      <Dashboard />
       <Field />
     </main>
   </AppContext.Provider>

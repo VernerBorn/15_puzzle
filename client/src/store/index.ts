@@ -7,20 +7,41 @@ export class store {
     this.currentArray[this.zeroElement] = this.currentArray[indexMoveTiles];
     this.currentArray[indexMoveTiles] = 0;
     this.zeroElement = indexMoveTiles;
+    this.stepAll++;
+    this.pause = false;
   };
 
   @observable sizeBoard = 16;
   @observable currentArray: number[] = [];
   @observable zeroElement = 0;
+  @observable stepAll = 0;
+  @observable seconds = 0;
+  @observable pause = true;
 
   @computed get sqrtSizeBoard() {
     return Math.sqrt(this.sizeBoard);
   }
+  @computed get timer() {
+    return new Date(this.seconds * 1000)
+      .toUTCString()
+      .split(/ /)[4]
+      .slice(3);
+  }
+
+  @action stopTimer = () => {
+    console.log('1');
+    this.pause = true;
+  };
+
+  @action setTimer = () => {
+    this.seconds++;
+  };
 
   @action getSizeBoard = (number: number) => {
     this.sizeBoard = number + 1;
     this.currentArray = genField(number + 1);
     this.zeroElement = this.currentArray.indexOf(0);
+    this.stepAll = 0;
   };
 
   @action getArrayTiles = () => {

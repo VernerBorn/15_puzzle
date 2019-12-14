@@ -1,0 +1,13 @@
+.time-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  &__icon {
+    width: 18px;
+    margin-right: 16px;
+  }
+  &__title {
+    font-size: 24px;
+  }
+}
