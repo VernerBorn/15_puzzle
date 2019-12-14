@@ -47,14 +47,23 @@ export default function useKeySwipeMove(actionMove: actionMove) {
   };
 
   const eventTouchendListner = (e: TouchEvent) => {
+    const threeActionMove = (direction: string) => {
+      actionMove[direction]();
+      actionMove[direction]();
+      actionMove[direction]();
+    };
+
     if (e.touches.length == e.targetTouches.length ? false : true) {
     } else {
       const touchEndClientX = e.changedTouches[0].pageX;
       const touchEndClientY = e.changedTouches[0].pageY;
+
       const dx = touchEndClientX - touchStartClientX;
       const absDx = Math.abs(dx);
+
       const dy = touchEndClientY - touchStartClientY;
       const absDy = Math.abs(dy);
+
       if (Math.max(absDx, absDy) > 40) {
         absDx > absDy
           ? dx < 0
@@ -63,6 +72,15 @@ export default function useKeySwipeMove(actionMove: actionMove) {
           : dy < 0
           ? actionMove.up()
           : actionMove.down();
+      }
+      if (Math.max(absDx, absDy) > 200) {
+        absDx > absDy
+          ? dx < 0
+            ? threeActionMove('left')
+            : threeActionMove('right')
+          : dy < 0
+          ? threeActionMove('up')
+          : threeActionMove('down');
       }
     }
   };
