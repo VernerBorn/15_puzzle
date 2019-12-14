@@ -42,6 +42,8 @@ export class store {
     this.currentArray = genField(number + 1);
     this.zeroElement = this.currentArray.indexOf(0);
     this.stepAll = 0;
+    this.seconds = 0;
+    this.pause = true;
   };
 
   @action getArrayTiles = () => {
