@@ -1,8 +1,11 @@
 @import "./components/Header/header.scss";
 @import "./components/App/app.scss";
 @import "./components/SelectionSize/selection-size.scss";
-@import "./components/Board/board.scss";
+@import "./components/Field/field.scss";
 @import "./components/Tiles/tiles.scss";
+@import "./components/Dashboard/dashboard.scss";
+@import "./components/StepInfo/step-info.scss";
+@import "./components/TimeInfo/time-info.scss";
 
 @font-face {
   font-family: Neuron;
@@ -13,15 +16,19 @@
 }
 @font-face {
   font-family: Neuron;
-  src: url("../public/fonts/Neuron.woff2") format("woff2"),
-    url("../public/fonts/Neuron.woff") format("woff");
+  src: url("../public/fonts/Neuron.woff2") format("woff2"), url("../public/fonts/Neuron.woff") format("woff");
   font-style: normal;
   font-weight: bold;
 }
 body {
+  overflow: hidden;
   margin: 0;
   padding: 0;
   background-color: #f6f7f9;
   color: #151328;
   font-family: Neuron;
+  &.dark {
+    background-color: #202329;
+    color: #f4f4f4;
+  }
 }

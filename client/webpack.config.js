@@ -2,31 +2,29 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
 module.exports = (env = {}) => {
-  const { mode = 'development' } = env
-  const isProd = mode === 'production'
+  const { mode = 'development' } = env;
+  const isProd = mode === 'production';
 
   const getPlugins = () => {
     const plugins = [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'public/index.html')
       })
-    ]
+    ];
     if (isProd) {
-      plugins.push(new MiniCssExtractPlugin({
-        filename: 'main-[hash:8].css'
-      }))
+      plugins.push(
+        new MiniCssExtractPlugin({
+          filename: 'main-[hash:8].css'
+        })
+      );
     }
-    return plugins
-  }
+    return plugins;
+  };
 
   const getStyleLoaders = () => {
-    return [
-      isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-      'css-loader'
-    ]
-  }
+    return [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'];
+  };
   return {
     mode: mode,
     entry: path.join(__dirname, 'src/index.tsx'),
@@ -43,9 +41,9 @@ module.exports = (env = {}) => {
     module: {
       rules: [
         {
-          test: /\.tsx$/,
+          test: /\.ts|tsx$/,
           exclude: /node_modules/,
-          use: ['babel-loader', 'ts-loader']
+          use: ['ts-loader']
         },
         //  Loading SCSS/SASS
         {
@@ -60,7 +58,7 @@ module.exports = (env = {}) => {
         {
           test: /\.(ttf|eot|woff|woff2)$/,
           loader: 'file-loader',
-          include: [/fonts/],
+          include: [/fonts/]
         }
       ]
     },
@@ -70,5 +68,5 @@ module.exports = (env = {}) => {
     devServer: {
       open: true
     }
-  }
+  };
 };
