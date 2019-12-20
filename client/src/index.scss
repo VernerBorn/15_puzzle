@@ -10,16 +10,18 @@
 @font-face {
   font-family: Neuron;
   src: url("../public/fonts/Neuron-DemiBold.woff2") format("woff2"),
-    url("../public/fonts/Neuron-DemiBold.woff") format("woff");
+  url("../public/fonts/Neuron-DemiBold.woff") format("woff");
   font-style: normal;
   font-weight: bold;
 }
+
 @font-face {
   font-family: Neuron;
   src: url("../public/fonts/Neuron.woff2") format("woff2"), url("../public/fonts/Neuron.woff") format("woff");
   font-style: normal;
   font-weight: bold;
 }
+
 body {
   overflow: hidden;
   margin: 0;
@@ -27,6 +29,7 @@ body {
   background-color: #f6f7f9;
   color: #151328;
   font-family: Neuron;
+
   &.dark {
     background-color: #202329;
     color: #f4f4f4;

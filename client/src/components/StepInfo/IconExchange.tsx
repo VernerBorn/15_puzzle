@@ -11,4 +11,5 @@ function IconExchange(props: IconProps) {
     </svg>
   );
 }
+
 export default IconExchange;

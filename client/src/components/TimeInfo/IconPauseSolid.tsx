@@ -3,6 +3,7 @@ import React from 'react';
 interface IconProps {
   className: string;
 }
+
 function IconPauseSolid(props: IconProps) {
   return (
     <svg viewBox="0 0 448 512" {...props}>
@@ -10,4 +11,5 @@ function IconPauseSolid(props: IconProps) {
     </svg>
   );
 }
+
 export default IconPauseSolid;

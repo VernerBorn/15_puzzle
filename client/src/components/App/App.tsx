@@ -8,10 +8,10 @@ import Dashboard from '../Dashboard/Dashboard';
 
 const App = () => (
   <AppContext.Provider value={stores}>
-    <Header />
-    <main className="main">
-      <Dashboard />
-      <Field />
+    <Header/>
+    <main className='main'>
+      <Dashboard/>
+      <Field/>
     </main>
   </AppContext.Provider>
 );

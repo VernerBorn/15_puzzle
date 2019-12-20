@@ -11,4 +11,5 @@ function IconSyncAltSolid(props: IconProps) {
     </svg>
   );
 }
+
 export default IconSyncAltSolid;

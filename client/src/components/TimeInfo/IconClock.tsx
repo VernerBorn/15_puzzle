@@ -11,4 +11,5 @@ function IconClock(props: IconProps) {
     </svg>
   );
 }
+
 export default IconClock;

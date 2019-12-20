@@ -10,33 +10,41 @@
   user-select: none;
   border: none;
   font-family: Neuron;
+
   &::before {
     content: "";
     padding-top: 100%;
   }
+
   &--9 {
     width: 30%;
     font-size: 64px;
   }
+
   &--16 {
     width: 22%;
     font-size: 48px;
   }
+
   &--25 {
     width: 17%;
     font-size: 36px;
   }
+
   &--none {
     background-color: #f6f7f9;
     box-shadow: none;
   }
+
   &.true {
     color: #f93c65;
   }
 }
+
 .dark {
   & .tiles {
     background-color: #2b3138;
+
     &--none {
       background-color: #202329;
     }

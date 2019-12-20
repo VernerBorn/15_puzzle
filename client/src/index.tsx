@@ -8,7 +8,7 @@ import './index.scss';
 
 ReactDOM.render(
   <ErrorBoundary>
-    <App />
+    <App/>
   </ErrorBoundary>,
   document.getElementById('root')
 );

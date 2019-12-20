@@ -8,6 +8,7 @@ interface TilesProps {
   index: number;
   check: boolean;
 }
+
 const Tiles = observer(function({ number, index, check }: TilesProps) {
   const { store } = React.useContext(AppContext);
   const {

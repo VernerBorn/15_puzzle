@@ -11,4 +11,5 @@ function IconAdjust(props: IconProps) {
     </svg>
   );
 }
+
 export default IconAdjust;
